@@ -20,9 +20,8 @@ func selectionSort(lst []int) {
 				minPos = j
 			}
 		}
-		swap := lst[i]
-		lst[i] = min
-		lst[minPos] = swap
+		// https://stackoverflow.com/questions/41314959/assigning-values-to-multiple-variables-in-go/41315277
+		lst[i], lst[minPos] = min, lst[i]
 	}
 }
 

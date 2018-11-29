@@ -11,13 +11,7 @@ numbers).
 For a given positive integer n determine if n is a happy number.
 
 */
-package main
-
-import (
-	"fmt"
-	"strconv"
-	"strings"
-)
+package practice
 
 func numToDigits(n int) []int {
 	ns := []int{}
@@ -45,7 +39,7 @@ func contains(xs []int, y int) bool {
 	return false
 }
 
-func isHappyNumber(n int) bool {
+func IsHappyNumber(n int) bool {
 	seen := []int{}
 	for {
 		if n == 1 {
@@ -56,56 +50,5 @@ func isHappyNumber(n int) bool {
 		}
 		seen = append(seen, n)
 		n = numToSumOfSquaresOfDigits(n)
-	}
-}
-
-func boolToEnglish(b bool) string {
-	if b {
-		return "is"
-	}
-	return "is not"
-}
-
-func happyNumberSequence(n int) []int {
-	sequence := []int{}
-	for n != 1 && !contains(sequence, n) {
-		sequence = append(sequence, n)
-		n = numToSumOfSquaresOfDigits(n)
-	}
-	return append(sequence, n)
-}
-
-func sequenceToIsHappy(seq []int) bool {
-	return seq[len(seq)-1] == 1
-}
-
-// Although I don't use this function I came across it when
-// researching if there was a builtin way to do the equivalent of
-// strings.Join() but for integers. I kept it because (again) this is
-// all just practice:
-// https://stackoverflow.com/questions/37532255/one-liner-to-transform-int-into-string/37533144
-func intJoin(a []int, delim string) string {
-	return strings.Trim(strings.Replace(fmt.Sprint(a), " ", delim, -1), "[]")
-}
-
-func intsToStrings(xs []int) []string {
-	strs := []string{}
-	for _, x := range xs {
-		strs = append(strs, strconv.Itoa(x))
-	}
-	return strs
-}
-
-func main() {
-	// On the one hand I felt that displaying the sequence was not
-	// necessary but on the other hand it is cool to see the
-	// sequence so I decided to do both since I'm just practicing
-	// anyway.
-	for i := 1; i <= 100; i++ {
-		fmt.Println(i, boolToEnglish(isHappyNumber(i)), "a happy number")
-	}
-	for i := 1; i <= 100; i++ {
-		seq := happyNumberSequence(i)
-		fmt.Println(i, boolToEnglish(sequenceToIsHappy(seq)), "a happy number, the sequence that was generated to determine that was:", strings.Join(intsToStrings(seq), ","))
 	}
 }

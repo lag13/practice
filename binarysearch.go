@@ -45,8 +45,9 @@ func binarySearch2(nums []int, num int, lowerBound int, upperBoundExclusive int)
 // element does not exist we need to bubble up that -1 value and
 // prevent it from being added to.
 func BinarySearch3(nums []int, num int) int {
+	const notFoundIndex = -1
 	if len(nums) == 0 {
-		return -1
+		return notFoundIndex
 	}
 	middle := len(nums) / 2
 	if nums[middle] == num {
@@ -56,14 +57,11 @@ func BinarySearch3(nums []int, num int) int {
 		return BinarySearch3(nums[:middle], num)
 	}
 	newLowerBound := middle + 1
-	return addUnlessNegative(BinarySearch3(nums[newLowerBound:], num), newLowerBound)
-}
-
-func addUnlessNegative(possibleNegative int, posNum int) int {
-	if possibleNegative < 0 {
-		return possibleNegative
+	possibleIndex := BinarySearch3(nums[newLowerBound:], num)
+	if possibleIndex == notFoundIndex {
+		return possibleIndex
 	}
-	return possibleNegative + posNum
+	return possibleIndex + newLowerBound
 }
 
 // BinarySearch4 works like BinarySearch3 but does not have to bubble

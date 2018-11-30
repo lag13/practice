@@ -73,3 +73,35 @@ func TestBinarySearch(t *testing.T) {
 		})
 	}
 }
+
+func genBigOrderedList(size int) []int {
+	lst := make([]int, size)
+	for i := 0; i < size; i++ {
+		lst = append(lst, i)
+	}
+	return lst
+}
+
+var bigOrderedList = genBigOrderedList(10000000)
+
+func benchmarkBinarySearchTemplate(b *testing.B, fn func([]int, int) int) {
+	for i := 0; i < b.N; i++ {
+		fn(bigOrderedList, -1)
+	}
+}
+
+func BenchmarkBinary1(b *testing.B) {
+	benchmarkBinarySearchTemplate(b, practice.BinarySearch)
+}
+
+func BenchmarkBinary2(b *testing.B) {
+	benchmarkBinarySearchTemplate(b, practice.BinarySearch2)
+}
+
+func BenchmarkBinary3(b *testing.B) {
+	benchmarkBinarySearchTemplate(b, practice.BinarySearch3)
+}
+
+func BenchmarkBinary4(b *testing.B) {
+	benchmarkBinarySearchTemplate(b, practice.BinarySearch4)
+}

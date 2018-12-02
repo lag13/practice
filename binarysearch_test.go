@@ -9,7 +9,7 @@ import (
 
 // TestBinarySearch tests that the binary search works as expected.
 func TestBinarySearch(t *testing.T) {
-	tests := []struct {
+	tt := []struct {
 		nums   []int
 		num    int
 		output int
@@ -65,9 +65,9 @@ func TestBinarySearch(t *testing.T) {
 			output: 3,
 		},
 	}
-	for _, test := range tests {
-		t.Run(fmt.Sprintf("BinarySearch(%v, %d)", test.nums, test.num), func(t *testing.T) {
-			if got, want := practice.BinarySearch(test.nums, test.num), test.output; got != want {
+	for _, tc := range tt {
+		t.Run(fmt.Sprintf("BinarySearch(%v, %d)", tc.nums, tc.num), func(t *testing.T) {
+			if got, want := practice.BinarySearch(tc.nums, tc.num), tc.output; got != want {
 				t.Errorf("got %d, want %d", got, want)
 			}
 		})

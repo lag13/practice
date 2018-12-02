@@ -11,7 +11,7 @@ import (
 // TestSelectionSort tests that the selection sort correctly sorts the
 // list.
 func TestSelectionSort(t *testing.T) {
-	tests := []struct {
+	tt := []struct {
 		input  []int
 		output []int
 	}{
@@ -40,11 +40,11 @@ func TestSelectionSort(t *testing.T) {
 			output: []int{-10, 0, 1, 1, 2},
 		},
 	}
-	for _, test := range tests {
-		t.Run(fmt.Sprintf("running selection sort on: %#v", test.input), func(t *testing.T) {
-			practice.SelectionSort(test.input)
-			if !reflect.DeepEqual(test.input, test.output) {
-				t.Errorf("got %#v wanted %#v", test.input, test.output)
+	for _, tc := range tt {
+		t.Run(fmt.Sprintf("running selection sort on: %#v", tc.input), func(t *testing.T) {
+			practice.SelectionSort(tc.input)
+			if !reflect.DeepEqual(tc.input, tc.output) {
+				t.Errorf("got %#v wanted %#v", tc.input, tc.output)
 			}
 		})
 	}

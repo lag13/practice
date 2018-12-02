@@ -1,3 +1,9 @@
+/*
+
+Given a sorted array of integers, return the index of the given key.
+Return -1 if not found.
+
+*/
 package practice
 
 // BinarySearch returns the index of the given number within a sorted

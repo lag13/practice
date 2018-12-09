@@ -69,7 +69,7 @@ func TestMaxsInSlidingWindow(t *testing.T) {
 // answer these types of questions.
 
 // TODO: In the future, add a couple Example tests to have examples of
-// that.
+// using that facility.
 
 // TODO: Also in the future talk about some of the more advanced
 // options for documenting go source code.

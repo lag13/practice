@@ -53,7 +53,12 @@ func MaxsInSlidingWindow2(nums []int, windowSize int) []int {
 	if len(nums) < windowSize {
 		return maxNums
 	}
-	window := []int{}
+	// There isn't *really* a need to allocate the maximum amount
+	// of memory this algorithm can occupy, but I figured I'd do
+	// it to give of example of the full 'make' function signature
+	// namely: make(type, length, capacity)
+	window := make([]int, 0, windowSize)
+	// TODO: Look up how slices grow more memory
 	for i := 0; i < windowSize; i++ {
 		window = addElementToWindow(window, nums, i, windowSize)
 	}

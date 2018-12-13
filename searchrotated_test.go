@@ -8,7 +8,10 @@ import (
 )
 
 // TestSearchRotated tests that searching for a number in an array
-// that has been rotated works as expected.
+// that has been rotated works as expected. This was a much more
+// complicated problem than I was expecting and it needed a lot of
+// test cases to cover all possible scenarios. Or perhaps my solution
+// was overly complicated.
 func TestSearchRotated(t *testing.T) {
 	tt := []struct {
 		nums []int
@@ -22,43 +25,68 @@ func TestSearchRotated(t *testing.T) {
 		},
 		{
 			nums: []int{15, 18, -1, 2, 4, 7, 10},
-			num:  2,
-			want: 3,
+			num:  8,
+			want: -1,
 		},
 		{
-			nums: []int{15, 18, -1, 2, 4, 5, 7, 10},
-			num:  7,
+			nums: []int{15, 18, -1, 2, 4, 7, 10},
+			num:  10,
 			want: 6,
 		},
 		{
-			nums: []int{6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5},
-			num:  -3,
+			nums: []int{15, 18, -1, 2, 4, 7, 10},
+			num:  15,
+			want: 0,
+		},
+		{
+			nums: []int{4, 6, 7, 8, 10, 0, 1},
+			num:  9,
 			want: -1,
 		},
-		// you either first jump into the part that has
-		// wrapped around or you jump into the part that has
-		// not been wrapped. If you do the former then if you
-		// keep searching for smaller numbers you will have to
-		// check the other side of the list assuming you do
-		// not find it. But if you are searching for a smaller
-		// number and the number you're looking at is larger
-		// than the last number you've seen in the array, then
-		// you know you've searched all you can.
-
-		// Do you always jump to the rotated point? No... that
-		// feels wrong. But there does seem to be something to
-		// it...
-
-		// You will either jump into the portion of the array
-		// that has been wrapped around or the portion that
-		// has not. And actually, how can you tell the
-		// difference? Given the array could you find the
-		// rotation number? Probably if you did a linear
-		// search you could.
 		{
-			nums: []int{0, -10, -9, -8, -7},
+			nums: []int{4, 6, 7, 8, 10, 0, 1},
+			num:  10,
+			want: 4,
+		},
+		{
+			nums: []int{3, 3, 3, 3, 3, 4, 1, 2, 3},
+			num:  4,
+			want: 5,
+		},
+		{
+			nums: []int{3, 4, 1, 2, 3, 3, 3, 3, 3},
+			num:  4,
+			want: 1,
+		},
+		{
+			nums: []int{3, 5, 7, 9, -1, 0, 1},
+			num:  5,
+			want: 1,
+		},
+		{
+			nums: []int{3, 5, 7, 9, -1, 0, 1},
+			num:  -2,
+			want: -1,
+		},
+		{
+			nums: []int{3, 5, 7, 9, -1, 0, 1},
+			num:  -1,
+			want: 4,
+		},
+		{
+			nums: []int{7, -1, 0, 1, 3, 5, 6},
+			num:  -1,
+			want: 1,
+		},
+		{
+			nums: []int{3, 0, 1, 2, 3, 3, 3, 3, 3},
 			num:  0,
-			want: 0,
+			want: 1,
+		},
+		{
+			nums: []int{3, 3, 3, 3, 3, 0, 1, 2, 3},
+			num:  0,
+			want: 5,
 		},
 	}
 	for _, tc := range tt {

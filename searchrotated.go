@@ -14,14 +14,6 @@ func SearchRotated(nums []int, num int) int {
 		return mid
 	}
 	if num > nums[mid] {
-		// TODO: At this point I feel like we do not need to
-		// care about mid anymore so it should be mid+1. But I
-		// don't think we can do that because the array might
-		// not be large enough to accomodate it. Maybe we
-		// don't even need this check at all? There is lots of
-		// repetition on which type of SearchRotated() call to
-		// perform so maybe we can restructure things
-		// differently to consolidate that logic a bit?
 		if nums[mid] < nums[len(nums)-1] { // this portion is increasing
 			if num <= nums[len(nums)-1] { // and this is where we might find num
 				maybeIndex := SearchRotated(nums[mid+1:], num)
@@ -69,6 +61,12 @@ func SearchRotated(nums []int, num int) int {
 	if nums[0] > nums[mid] {
 		return SearchRotated(nums[:mid], num)
 	}
+	// TODO: Was I wrong in assuming there could be duplicates?
+	// Because I'm realizing that one algorithm could return a
+	// different answer if it called SearchRotated(nums[mid+1...)
+	// first as opposed to calling SearchRotated(nums[:mid]...) as
+	// I did here. Maybe that's fine but it does feel a bit
+	// strange.
 	maybeIndex1 := SearchRotated(nums[:mid], num)
 	if maybeIndex1 == notFoundIndex {
 		maybeIndex2 := SearchRotated(nums[mid+1:], num)

@@ -10,8 +10,17 @@ import (
 // TestSearchRotated tests that searching for a number in an array
 // that has been rotated works as expected. This was a much more
 // complicated problem than I was expecting and it needed a lot of
-// test cases to cover all possible scenarios. Or perhaps my solution
-// was overly complicated.
+// test cases to cover all possible scenarios (or perhaps my solution
+// is overly complicated). In total it probably took me 10 hours
+// spread across 4 days to complete.
+//
+// This problem was a perfect example of how, in order to write good
+// tests (who's cases are not redundant and they exercise all paths in
+// the solution), you must have a solid understanding of the
+// algorithm. It is okay to write parts of the algorithm first and
+// then add a test covering the logic you just added. Solving this
+// also served as a good reminder to bust out the pad and paper if you
+// are really struggling with a problem.
 func TestSearchRotated(t *testing.T) {
 	tt := []struct {
 		nums []int

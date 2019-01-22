@@ -40,6 +40,11 @@ func TestRotateArray(t *testing.T) {
 			n:    -1,
 			want: []int{2, 3, 4, 1},
 		},
+		{
+			arr:  []int{1, 2, 3, 4, 5, 6, 7},
+			n:    -3,
+			want: []int{4, 5, 6, 7, 1, 2, 3},
+		},
 	}
 	for _, tc := range tt {
 		t.Run(fmt.Sprintf("RotateArray(%+v, %d)", tc.arr, tc.n), func(t *testing.T) {

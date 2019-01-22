@@ -7,12 +7,7 @@ func RotateArray(arr []int, n int) []int {
 		return arr
 	}
 	rotated := []int{}
-	// TODO: I believe the proper definition of modulus for
-	// negative numbers should still return a positive number but
-	// this does not. This calculation I have here seems to work
-	// though, learn why. Also modulus is not defined when the
-	// second operand is 0 but I feel like it should be defined in
-	// that case? Look this up too.
+	// https://github.com/golang/go/issues/448
 	n = n % len(arr)
 	if n < 0 {
 		n += len(arr)

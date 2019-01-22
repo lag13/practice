@@ -45,6 +45,12 @@ func TestLowHighIndex(t *testing.T) {
 			wantLow:  10,
 			wantHigh: 10,
 		},
+		{
+			arr:      []int{1, 2, 5, 5, 5, 5, 5, 6, 10, 20},
+			key:      5,
+			wantLow:  2,
+			wantHigh: 6,
+		},
 	}
 	for _, tc := range tt {
 		t.Run(fmt.Sprintf("LowHighIndex(%v, %d)", tc.arr, tc.key), func(t *testing.T) {

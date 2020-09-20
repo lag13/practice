@@ -55,7 +55,12 @@ func TestIsMatch(t *testing.T) {
 		},
 		{
 			s:    "ccaab",
-			p:    "c*ccaab",
+			p:    "c*.caab",
+			want: true,
+		},
+		{
+			s:    "aaa",
+			p:    "ab*a*c*a",
 			want: true,
 		},
 		{
